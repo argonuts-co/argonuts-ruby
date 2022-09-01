@@ -16,13 +16,13 @@ module Argonuts
     @api_key
   end
 
-  def self.region=(region)
-    @region = region
-  end
-
-  def self.region
-    @region
-  end
+  # def self.region=(region)
+  #   @region = region
+  # end
+  #
+  # def self.region
+  #   @region
+  # end
 
   def self.endpoint=(endpoint)
     @endpoint = endpoint
