@@ -4,7 +4,7 @@ The Argonuts Ruby library provides access to the Argonuts API.
 
 ## Documentation
 
-See the [full documentation](https://docs.argonuts.co).
+See the [full documentation](https://argonuts.co/docs).
 
 ## Installation
 
