@@ -52,13 +52,13 @@ class ArgonutsTest < Test::Unit::TestCase
     assert_equal "job.starting", job.status
   end
 
-  # def test_retrieve_job
-  #   job = Argonuts::Job.retrieve(create_job.id)
-  #   assert job.is_a?(Argonuts::Job)
-  #   assert_not_nil job.id
-  #   assert_equal "job.starting", job.status
-  # end
-  #
+  def test_retrieve_job
+    job = Argonuts::Job.retrieve(create_job.id)
+    assert job.is_a?(Argonuts::Job)
+    assert_not_nil job.id
+    assert_equal "job.starting", job.status
+  end
+
   # def test_create_job_error
   #   create_job(input: {url: "notvalidurl"})
   # rescue => e
