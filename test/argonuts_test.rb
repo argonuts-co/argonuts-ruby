@@ -11,7 +11,6 @@ class ArgonutsTest < Test::Unit::TestCase
     Argonuts.endpoint = ENV["ARGONUTS_ENDPOINT"]
 
     Argonuts.notification = {
-      type: "http",
       url: ENV["ARGONUTS_WEBHOOK_URL"]
     }
 

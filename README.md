@@ -48,7 +48,7 @@ Argonuts.storage = {
 ## Creating a job
 
 ```ruby
-job = Argonuts::Job.create(
+job = Argonuts::Job.create({
   input: { url: "https://yoursite.co/path/file.mp4" },
   outputs: {
     "jpg:300x": { path: "/image.jpg" },
@@ -57,7 +57,7 @@ job = Argonuts::Job.create(
       hls: { path: "hls/" }
     }
   }
-)
+})
 ```
 
 ## Getting information about a job
