@@ -6,7 +6,7 @@ require "argonuts/metadata"
 require "argonuts/version"
 
 module Argonuts
-  ENDPOINT = "https://argonuts.co/api/v1"
+  ENDPOINT = "https://argonuts.co/api/v1/"
 
   def self.api_key=(key)
     @api_key = key
