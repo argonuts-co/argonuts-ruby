@@ -30,7 +30,7 @@ bundle install
 
 ## Usage
 
-The library needs you to set your API key which can be found in your [dashboard](https://argonuts.co/dashboard).
+The library needs you to set your API key which can be found in your [profile](https://argonuts.co/profile).
 
 
 ```ruby
@@ -49,7 +49,7 @@ Argonuts.storage = {
 ## Creating a job
 
 ```ruby
-Argonuts::Job.create(
+job = Argonuts::Job.create(
   input: { url: "https://yoursite.co/path/file.mp4" },
   outputs: {
     "jpg:300x": { path: "/image.jpg" },
@@ -64,21 +64,7 @@ Argonuts::Job.create(
 ## Getting information about a job
 
 ```ruby
-Argonuts::Job.retrieve("OolQXaiU86NFki")
-```
-
-## Retrieving metadata
-
-```ruby
-Argonuts::Metadata.retrieve("OolQXaiU86NFki")
-
-```
-
-## Per-request configuration
-
-```ruby
-cli = Argonuts::Client.new(api_key: "api-key-prod")
-Argonuts::Job.create(job, client: cli)
+Argonuts::Job.retrieve(job.id)
 ```
 
 *Released under the [MIT license](http://www.opensource.org/licenses/mit-license.php).*
