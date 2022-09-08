@@ -22,6 +22,7 @@ module Argonuts
 
       url = URI("#{cli.endpoint}#{path}")
       http = Net::HTTP.new(url.host, url.port)
+      http.use_ssl = true if url.instance_of? URI::HTTPS
 
       case verb
       when :get
