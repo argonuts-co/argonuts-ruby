@@ -37,7 +37,6 @@ The library needs you to set your API key which can be found in your [profile](h
 Argonuts.api_key = 'api-key'
 
 Argonuts.notification = {
-  type: "http",
   url: "https://yoursite.co/api/argonuts/webhook"
 }
 
