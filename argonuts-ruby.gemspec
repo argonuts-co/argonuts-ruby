@@ -15,4 +15,6 @@ Gem::Specification.new do |gem|
   gem.test_files    = `git ls-files -- test/*`.split("\n")
   gem.require_paths = ["lib"]
   gem.add_runtime_dependency "http"
+
+  gem.add_dependency "rest-client"
 end
