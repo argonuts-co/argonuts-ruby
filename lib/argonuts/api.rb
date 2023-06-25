@@ -14,30 +14,42 @@ module Argonuts
       {
         'X-Auth-Token': cli.api_key,
         'User-Agent': "Argonuts/#{Argonuts::VERSION}",
+        'Content-Type': 'application/json',
       }
     end
 
     def self.request(verb, path, options = {})
+      require 'rest-client'
+
       cli = options[:client] || Argonuts.default_client
 
-      url = URI("#{cli.endpoint}#{path}")
-      http = Net::HTTP.new(url.host, url.port)
-      http.use_ssl = true if url.instance_of? URI::HTTPS
+      begin
+        case verb
+        when :get
+          resp = RestClient::Request.execute(
+            method: :get,
+            url: "#{cli.endpoint}#{path}",
+            headers: {}.merge(self.headers(cli))
+          )
+        when :post
+          headers = {}
 
-      case verb
-      when :get
-        request = Net::HTTP::Get.new(url, 'Content-Type' => 'application/json')
-      when :post
-        request = Net::HTTP::Post.new(url, 'Content-Type' => 'application/json')
-        request.body = options[:json].to_json
-      end
+          if options[:json][:input][:file]
+            options[:json][:input][:file] = File.open(options[:json][:input][:file], 'rb')
+          end
 
-      headers(cli).map { |k, v| request[k] = v }
-      resp = http.request(request)
-
-      if resp.code.to_i > 399
-        # if response is 400 or 401, we return the error message and error code
-        raise Argonuts::Error, "Server returned HTTP status #{resp.code}."
+          resp = RestClient::Request.execute(
+            method: :post,
+            url: "#{cli.endpoint}#{path}",
+            payload: options[:json],
+            headers: headers.merge(self.headers(cli))
+          )
+        end
+      rescue RestClient::ExceptionWithResponse => e
+        if e.response.code.to_i > 399
+          # if response is 400 or 401, we return the error message and error code
+          raise Argonuts::Error, "Server returned HTTP status #{e.response.code.to_i}."
+        end
       end
 
       return JSON::parse(resp.body)
