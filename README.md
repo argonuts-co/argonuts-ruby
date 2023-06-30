@@ -45,11 +45,12 @@ Argonuts.storage = {
 }
 ```
 
-## Creating a job
+## Creating a transcode job
 
 ```ruby
 job = Argonuts::Job.create({
   input: { url: "https://yoursite.co/path/file.mp4" },
+  type: 'transcode',
   outputs: {
     "jpg:300x": { path: "/image.jpg" },
     "mp4:1080p": { path: "/1080p.mp4" },
@@ -60,10 +61,24 @@ job = Argonuts::Job.create({
 })
 ```
 
+## Creating a torrent job
+
+```ruby
+job = Argonuts::Job.create({
+  input: { file: '/Users/bob/Downloads/file.torrent' },
+  type: 'torrent',
+  storage: {
+    service: 'argonuts'
+  }
+})
+```
+
 ## Getting information about a job
 
 ```ruby
 Argonuts::Job.retrieve(job.id)
 ```
+
+## TODO: storages
 
 *Released under the [MIT license](http://www.opensource.org/licenses/mit-license.php).*
